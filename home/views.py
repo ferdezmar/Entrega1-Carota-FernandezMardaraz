@@ -67,3 +67,7 @@ def ver_familiares(request):
     # return HttpResponse(template_renderizado)
     
     return render(request, 'home/ver_familiares.html', {'familiares': familiares})
+
+def index (request):
+    
+    return render(request, 'home/index.html')
