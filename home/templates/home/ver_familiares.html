@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p> Listado de familiares </p>
+{% extends 'home/index.html' %}
+
+{% block mi_titulo %}
+<title>Usuarios</title>
+{% endblock mi_titulo %}
+
+{% block h1_texto_header %}
+Usuarios
+{% endblock h1_texto_header %}
+
+{% block index_contenido %}
+    <a class="navbar-brand" href={% url 'index' %}>Index</a>
+    <p> Listado de usuarios </p>
     {% for familiar in familiares %}
         <li><p> Familiar: {{familiar.nombre}} {{familiar.apellido}}</p> 
         <p>Edad: {{familiar.edad}}</p> 
         <p>Fecha de creación: {{familiar.fecha_nacimiento}} </p></li>    
     {% endfor %}
-
-
-</body>
-</html>
+{% endblock index_contenido %}
