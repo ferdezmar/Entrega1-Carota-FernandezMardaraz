@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from datetime import datetime
 from django.template import Context, Template, loader
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import random
 from home.models import Persona
+from home.forms import HumanoFormulario, BusquedaHumanoFormulario
 
 # def saludo(request):
 #     return HttpResponse ('<h1> Buenas y santas </h1>')
@@ -47,26 +48,43 @@ from home.models import Persona
         
     # return HttpResponse(template_renderizado)
 
-def crear_familiar(request, nombre, apellido):
+def crear_familiar(request):
     
-    familiar = Persona(nombre=nombre, apellido=apellido, edad=random.randrange(1,99), fecha_nacimiento=datetime.now())
-    familiar.save()
+    if request.method == 'POST':
+        
+        formulario = HumanoFormulario(request.POST)
+        
+        if formulario.is_valid():
+            
+            data= formulario.cleaned_data
+            
+            nombre= data ['nombre']
+            apellido= data ['apellido']
+            edad= data ['edad']
+            fecha_nacimiento = data.get('fecha_nacimiento', datetime.now())
+            familiar = Persona(nombre=nombre, apellido=apellido, edad=edad, fecha_nacimiento=fecha_nacimiento)
+            familiar.save()
+        
+            return redirect('ver_familiares')
     
-    # template = loader.get_template('crear_familiar.html')
-    # template_renderizado = template.render({'familiar': familiar})
-    # return HttpResponse(template_renderizado)
+    formulario = HumanoFormulario()
     
-    return render(request, 'home/crear_familiar.html', {'familiar': familiar})
+    return render(request, 'home/crear_familiar.html', {'formulario': formulario})
 
 def ver_familiares(request):
     
-    familiares = Persona.objects.all()
+    nombre = request.GET.get('nombre', None)
     
-    # template = loader.get_template('ver_familiares.html')
-    # template_renderizado = template.render({'familiares': familiares})
-    # return HttpResponse(template_renderizado)
+    if nombre:
+        familiares = Persona.objects.filter(nombre__icontains=nombre)
+    else:
+        familiares = Persona.objects.all()
+    
+    formulario = BusquedaHumanoFormulario()
     
     return render(request, 'home/ver_familiares.html', {'familiares': familiares})
+                  
+    # , {'formulario': formulario} )
 
 def index (request):
     

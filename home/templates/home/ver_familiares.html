@@ -9,11 +9,22 @@ Usuarios
 {% endblock h1_texto_header %}
 
 {% block index_contenido %}
-    <a class="navbar-brand" href={% url 'index' %}>Index</a>
-    <p> Listado de usuarios </p>
-    {% for familiar in familiares %}
+<a class="navbar-brand" href={% url 'index' %}>Index</a>
+<p> Listado de usuarios </p>
+
+<form action={% url 'ver_personas' %} method="GET">
+            
+    <table>
+    {{formulario}}
+    </table>
+        
+    <button>Buscar</button>
+    
+</form>       
+
+{% for familiar in familiares %}
         <li><p> Familiar: {{familiar.nombre}} {{familiar.apellido}}</p> 
         <p>Edad: {{familiar.edad}}</p> 
         <p>Fecha de creación: {{familiar.fecha_nacimiento}} </p></li>    
-    {% endfor %}
+{% endfor %}
 {% endblock index_contenido %}
