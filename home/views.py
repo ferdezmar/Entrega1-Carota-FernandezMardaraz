@@ -6,47 +6,6 @@ import random
 from home.models import Persona
 from home.forms import HumanoFormulario, BusquedaHumanoFormulario
 
-# def saludo(request):
-#     return HttpResponse ('<h1> Buenas y santas </h1>')
-
-# def fecha (request):
-#     fecha_actual = datetime.now()
-#     return HttpResponse (f'La hora y fecha actual es {fecha_actual}')
-
-# def calcular_fecha_nac(request, edad):
-#     fecha = datetime.now().year - edad
-#     return HttpResponse(f'Tu fecha de nacimiento aproximada para tus {edad} años, es {fecha}')
-
-# def mi_template (request):
-    
-#     cargar_archivo = open(r'C:\Users\fedef\OneDrive\Documentos\Python\Proyecto\templates\mi_template.html', 'r')
-#     template = Template(cargar_archivo.read())
-#     cargar_archivo.close()
-    
-#     contexto = Context()
-    
-#     template_renderizado = template.render(contexto)
-    
-#     return HttpResponse(template_renderizado)
-
-# def tu_template (request, nombre):
-    
-#     template = loader.get_template('tu_template.html')
-#     template_renderizado = template.render({'persona': nombre})
-        
-#     return HttpResponse(template_renderizado)
-
-# def prueba_template(request):
-    
-#     mi_contexto = {
-#         'rango': list(range (1,11)),
-#         'valor_aleatorio': random.randrange(1,11)
-#         }
-    
-    # template = loader.get_template('prueba_template.html')
-    # template_renderizado = template.render(mi_contexto)
-        
-    # return HttpResponse(template_renderizado)
 
 def crear_familiar(request):
     
@@ -65,7 +24,7 @@ def crear_familiar(request):
             familiar = Persona(nombre=nombre, apellido=apellido, edad=edad, fecha_nacimiento=fecha_nacimiento)
             familiar.save()
         
-            return redirect('ver_familiares')
+            return redirect('ver_personas')
     
     formulario = HumanoFormulario()
     
@@ -82,9 +41,7 @@ def ver_familiares(request):
     
     formulario = BusquedaHumanoFormulario()
     
-    return render(request, 'home/ver_familiares.html', {'familiares': familiares})
-                  
-    # , {'formulario': formulario} )
+    return render(request, 'home/ver_familiares.html', {'familiares': familiares,'formulario': formulario} )
 
 def index (request):
     
