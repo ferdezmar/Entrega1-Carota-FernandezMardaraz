@@ -9,7 +9,7 @@ Usuarios
 {% endblock h1_texto_header %}
 
 {% block index_contenido %}
-<a class="navbar-brand" href={% url 'index' %}>Index</a>
+<a class="navbar-brand" href={% url 'crear_persona' %}>Crear Usuario</a>
 <p> Listado de usuarios </p>
 
 <form action={% url 'ver_personas' %} method="GET">
