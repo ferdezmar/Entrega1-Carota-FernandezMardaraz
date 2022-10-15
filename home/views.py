@@ -4,7 +4,7 @@ from home.models import Persona
 from home.forms import HumanoFormulario, BusquedaHumanoFormulario
 
 
-def crear_persona(request):
+def crear_usuario(request):
     if request.method == 'POST':
         formulario = HumanoFormulario(request.POST)
 
@@ -22,32 +22,32 @@ def crear_persona(request):
                               fecha_nacimiento=fecha_nacimiento)
             persona.save()
 
-            return redirect('ver_personas')
+            return redirect('ver_usuarios')
         else:
             return render(request,
-                          'home/crear_persona.html',
+                          'home/crear_usuarios.html',
                           {'formulario': formulario})
 
     formulario = HumanoFormulario()
 
     return render(request,
-                  'home/crear_persona.html',
+                  'home/crear_usuario.html',
                   {'formulario': formulario})
 
 
-def ver_personas(request):
+def ver_usuarios(request):
     nombre = request.GET.get('nombre', None)
 
     if nombre:
-        familiares = Persona.objects.filter(nombre__icontains=nombre)
+        personas = Persona.objects.filter(nombre__icontains=nombre)
     else:
-        familiares = Persona.objects.all()
+        personas = Persona.objects.all()
 
     formulario = BusquedaHumanoFormulario()
 
     return render(request,
-                  'home/ver_personas.html',
-                  {'familiares': familiares,'formulario': formulario})
+                  'home/ver_usuarios.html',
+                  {'personas': personas,'formulario': formulario})
 
 
 def about(request):

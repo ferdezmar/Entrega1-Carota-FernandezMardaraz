@@ -9,10 +9,10 @@ Usuarios
 {% endblock h1_texto_header %}
 
 {% block index_contenido %}
-<a class="navbar-brand" href={% url 'crear_persona' %}>Crear Usuario</a>
+<a class="navbar-brand" href={% url 'crear_usuario' %}>Crear Usuario</a>
 <p> Listado de usuarios </p>
 
-<form action={% url 'ver_personas' %} method="GET">
+<form action={% url 'ver_usuarios' %} method="GET">
     <p>
     {{formulario}}
     <button>Buscar</button>
@@ -20,12 +20,12 @@ Usuarios
 </form>
 
 <p>
-    {% if familiares %}
+    {% if personas %}
 
-        {% for familiar in familiares %}
-            <li><p> Familiar: {{familiar.nombre}} {{familiar.apellido}}</p>
-            <p>Edad: {{familiar.edad}}</p>
-            <p>Fecha de nacimiento: {{familiar.fecha_nacimiento}} </p></li>
+        {% for persona in personas %}
+            <li><p> Persona: {{persona.nombre}} {{persona.apellido}}</p>
+            <p>Edad: {{persona.edad}}</p>
+            <p>Fecha de nacimiento: {{persona.fecha_nacimiento}} </p></li>
         {% endfor %}
 
     {% else %}

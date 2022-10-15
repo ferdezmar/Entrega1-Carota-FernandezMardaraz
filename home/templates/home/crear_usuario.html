@@ -1,11 +1,11 @@
 {% extends 'home/base.html' %}
 
 {% block mi_titulo %}
-<title>Crear persona</title>
+<title>Crear usuario</title>
 {% endblock mi_titulo %}
 
 {% block mi_contenido %}
-<form action={% url 'crear_persona' %} method="POST">
+<form action={% url 'crear_usuario' %} method="POST">
     {% csrf_token %}
 
     <table>
