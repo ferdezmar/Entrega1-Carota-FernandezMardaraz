@@ -22,11 +22,26 @@ Usuarios
 <p>
     {% if personas %}
 
+        <table>
+        <tr>
+            <th width="180px">Apellido</th>
+            <th width="180px">Nombre</th>
+            <th width="50px">Edad</th>
+            <th width="180px">Fecha de Nacimiento</th>
+        </tr>
         {% for persona in personas %}
-            <li><p> Persona: {{persona.nombre}} {{persona.apellido}}</p>
-            <p>Edad: {{persona.edad}}</p>
-            <p>Fecha de nacimiento: {{persona.fecha_nacimiento}} </p></li>
+            <tr>
+            <td>{{persona.apellido}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.edad}}</td>
+            {% if persona.fecha_nacimiento %}
+                <td>{{persona.fecha_nacimiento}}</td>
+            {% else %}
+                <td></td>
+            </tr>
+            {% endif %}
         {% endfor %}
+        </table>
 
     {% else %}
         <p>No hay usuarios creados o la busqueda no coincide.</p>
