@@ -50,5 +50,9 @@ def ver_personas(request):
                   {'familiares': familiares,'formulario': formulario})
 
 
-def index (request):
+def about(request):
+    return render(request, 'home/about.html')
+
+
+def index(request):
     return render(request, 'home/index.html')
