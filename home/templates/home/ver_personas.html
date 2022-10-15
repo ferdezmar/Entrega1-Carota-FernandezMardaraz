@@ -13,14 +13,11 @@ Usuarios
 <p> Listado de usuarios </p>
 
 <form action={% url 'ver_personas' %} method="GET">
-            
-    <table>
+    <p>
     {{formulario}}
-    </table>
-        
     <button>Buscar</button>
-    
-</form>       
+    </p>
+</form>
 
 <p>
     {% if familiares %}
