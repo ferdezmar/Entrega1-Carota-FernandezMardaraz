@@ -23,14 +23,14 @@ Usuarios
     {% if familiares %}
 
         {% for familiar in familiares %}
-            <li><p> Familiar: {{familiar.nombre}} {{familiar.apellido}}</p> 
-            <p>Edad: {{familiar.edad}}</p> 
-            <p>Fecha de nacimiento: {{familiar.fecha_nacimiento}} </p></li>    
+            <li><p> Familiar: {{familiar.nombre}} {{familiar.apellido}}</p>
+            <p>Edad: {{familiar.edad}}</p>
+            <p>Fecha de nacimiento: {{familiar.fecha_nacimiento}} </p></li>
         {% endfor %}
 
     {% else %}
         <p>No se encontraron resultados.</p>
     {% endif %}
 
-</p>    
+</p>
 {% endblock index_contenido %}
